@@ -8,11 +8,13 @@ Created on 2016年5月25日
 '''
 
 class CPUAndMemory:
-    def __init__(self, fileName, saveFileName, packageName):
+    def __init__(self, fileName, saveFileName, packageName, appName, deviceModel):
         print '***open***'
         self.fileName = fileName
         self.saveFileName = saveFileName
         self.packageName = packageName
+        self.appName = appName
+        self.deviceModel = deviceModel
         self.file = open(fileName)
         self.infofile = open(saveFileName, 'w')
         
@@ -56,12 +58,12 @@ class CPUAndMemory:
                    "SET cpumax = '%s',cpuavg = '%s'," +
                    "vsizemax = '%s',vsizeavg = '%s'," +
                    "rssmax = '%s',rssavg = '%s' " +
-                   "WHERE devicemodel = '%s' ")%('BaiduMap',cpumax,cpuavg,vsizemax,vsizeavg,rssmax,rssavg,'H60-L01')
+                   "WHERE devicemodel = '%s' ")%(self.appName,cpumax,cpuavg,vsizemax,vsizeavg,rssmax,rssavg,self.deviceModel)
         print sqlquery
         cxn = MysqlHelper.connect()
         cur = cxn.cursor()
         res =  MysqlHelper.update(cur , sqlquery)
         MysqlHelper.finish(cxn)
 if __name__ == '__main__':
-    f = CPUAndMemory('cpumeminfo.log', 'package.log', 'com.baidu.BaiduMap')
+    f = CPUAndMemory('cpumeminfo.log', 'package.log', 'com.baidu.BaiduMap',"BaiduMap","H60-L01")
     f.getCpuAndMemory()

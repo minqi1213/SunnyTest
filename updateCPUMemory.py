@@ -4,6 +4,7 @@ import ftplib
 import socket
 import sys, getopt, datetime,time
 from MYFTP import *
+from CPUAndMemory import *
 '''
 Created on 2016年5月23日
 
@@ -95,6 +96,7 @@ def main(argv):
             for list in listAllDevices(a):
                 print "/var/ftp/pub/%s/%s/cpumeminfo.log"%(a,list)
                 f.download_file("./cpumeminfo.log", "/var/ftp/pub/%s/%s/cpumeminfo.log"%(a,list))
+                result = CPUAndMemory('cpumeminfo.log', 'package.log', 'com.baidu.BaiduMap', a, list)
             sys.exit(0)
         else:
             print 'unhandled option'
