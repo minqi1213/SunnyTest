@@ -22,7 +22,7 @@ def Usage():
     print 'PyTest.py usage:'
     print '-h,--help: print help message.'
     print '-v, --version: print script version'
-    print '-a, --application: input an app name'
+    print '-a, --application: input an app name and package name, such as BaiduMap:com.baidu.BaiduMap'
 
 def Version():
     print 'main.py 1.0.0.0.1'
@@ -94,10 +94,10 @@ def main(argv):
         elif o in ('-a', '--application'):
             f = MYFTP(FTP_HOST, FTP_USERNAME, FTP_PASSWD, rootdir_remote, FTP_PORT)
             f.login()
-            for list in listAllDevices(a):
-                print "/var/ftp/pub/%s/%s/cpumeminfo.log"%(a,list)
-                f.download_file("./cpumeminfo.log", "/var/ftp/pub/%s/%s/cpumeminfo.log"%(a,list))
-                result = CPUAndMemory('cpumeminfo.log', 'package.log', 'com.baidu.BaiduMap', a, list)
+            for list in listAllDevices(a.split(':')[0]):
+                print "/var/ftp/pub/%s/%s/cpumeminfo.log"%(a.split(':')[0],list)
+                f.download_file("./cpumeminfo.log", "/var/ftp/pub/%s/%s/cpumeminfo.log"%(a.split(':')[0],list))
+                result = CPUAndMemory('cpumeminfo.log', 'package.log', a.split(':')[1], a.split(':')[0], list)
                 result.getCpuAndMemory()
                 deleteFile = FileOperation()
                 deleteFile.deleteFile('cpumeminfo.log')
