@@ -1,5 +1,5 @@
 #coding=utf-8
-
+from MysqlHelper import *
 import MysqlHelper
 '''
 Created on 2016年5月25日
