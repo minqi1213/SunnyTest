@@ -97,6 +97,7 @@ def main(argv):
                 print "/var/ftp/pub/%s/%s/cpumeminfo.log"%(a,list)
                 f.download_file("./cpumeminfo.log", "/var/ftp/pub/%s/%s/cpumeminfo.log"%(a,list))
                 result = CPUAndMemory('cpumeminfo.log', 'package.log', 'com.baidu.BaiduMap', a, list)
+                result.getCpuAndMemory()
             sys.exit(0)
         else:
             print 'unhandled option'
