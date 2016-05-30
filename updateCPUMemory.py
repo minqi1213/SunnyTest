@@ -5,6 +5,7 @@ import socket
 import sys, getopt, datetime,time
 from MYFTP import *
 from CPUAndMemory import *
+from FileOperation import *
 '''
 Created on 2016年5月23日
 
@@ -98,6 +99,9 @@ def main(argv):
                 f.download_file("./cpumeminfo.log", "/var/ftp/pub/%s/%s/cpumeminfo.log"%(a,list))
                 result = CPUAndMemory('cpumeminfo.log', 'package.log', 'com.baidu.BaiduMap', a, list)
                 result.getCpuAndMemory()
+                deleteFile = FileOperation()
+                deleteFile.deleteFile('cpumeminfo.log')
+                deleteFile.deleteFile('package.log')
             sys.exit(0)
         else:
             print 'unhandled option'
