@@ -4,7 +4,7 @@
 HOST = '101.200.179.166'
 PORT = 3306
 USER = 'root'
-PASSWORD = '123456'
+PASSWORD = 'Beijing123'
 DBNAME = 'SunnyTest'
 CHARSET = 'utf8'
 

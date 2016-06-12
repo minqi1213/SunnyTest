@@ -8,7 +8,7 @@ def getDevicesToken():
         host = '101.200.179.166',
         port = 3306,
         user = 'root',
-        passwd = '123456',
+        passwd = 'Beijing123',
         db = 'SunnyTest',
         )
     cur = conn.cursor()
